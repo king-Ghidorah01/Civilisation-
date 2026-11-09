@@ -1,0 +1,58 @@
+{
+    "stage": "EARTH",
+    "sequences": [
+        {
+            "id": "earth_intro",
+            "trigger": "WorldLoaded",
+            "delay": 3000,
+            "priority": "HIGH",
+            "speaker": "NARRATOR",
+            "lines": [
+                {
+                    "text": "Look around you. Almost everything here depends on energy.",
+                    "duration": 4000
+                },
+                {
+                    "text": "The lights. The transport. The factories. Even the infrastructure beneath your feet.",
+                    "duration": 5000,
+                    "delay": 1000
+                },
+                {
+                    "text": "But where does all that energy actually come from?",
+                    "duration": 4000,
+                    "delay": 1500
+                }
+            ]
+        },
+        {
+            "id": "inspect_power",
+            "trigger": "InspectPowerPlant",
+            "priority": "HIGH",
+            "speaker": "NARRATOR",
+            "lines": [
+                {
+                    "text": "That building doesn't look particularly impressive from here.",
+                    "duration": 3500
+                },
+                {
+                    "text": "But it's part of a system that keeps an entire city alive.",
+                    "duration": 4000,
+                    "delay": 1000
+                }
+            ]
+        },
+        {
+            "id": "leave_city",
+            "trigger": "PlayerWandering",
+            "priority": "LOW",
+            "speaker": "NARRATOR",
+            "interruptible": true,
+            "lines": [
+                {
+                    "text": "Notice how the infrastructure fades as you move away from the center.",
+                    "duration": 4000
+                }
+            ]
+        }
+    ]
+}

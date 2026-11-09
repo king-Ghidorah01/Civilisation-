@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civilization: A Journey Through Physics</title>
+    
+    <!-- External Libraries (Import Map) -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/menus.css">
+</head>
+<body>
+    <!-- 3D Canvas Container -->
+    <div id="game-container"></div>
+
+    <!-- UI Overlay Layer -->
+    <div id="ui-layer">
+        
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="active">
+            <div class="loading-content">
+                <h1>INITIALIZING SIMULATION</h1>
+                <div class="progress-bar">
+                    <div id="progress-fill"></div>
+                </div>
+                <p id="loading-text">Loading physics engine...</p>
+            </div>
+        </div>
+
+        <!-- Main Menu -->
+        <div id="main-menu" class="hidden">
+            <div class="menu-content">
+                <h1 class="game-title">CIVILIZATION</h1>
+                <h2 class="game-subtitle">A JOURNEY THROUGH PHYSICS</h2>
+                <div class="menu-buttons">
+                    <button id="btn-start" class="menu-btn">START JOURNEY</button>
+                    <button id="btn-settings" class="menu-btn">SETTINGS</button>
+                    <button id="btn-exit" class="menu-btn">EXIT</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- In-Game HUD (Minimal) -->
+        <div id="hud" class="hidden">
+            <div class="hud-top">
+                <div class="hud-top-left">
+                    <span id="current-location">EARTH</span>
+                </div>
+                <div class="hud-top-right">
+                    <button id="btn-mute" class="hud-btn">🔊</button>
+                </div>
+            </div>
+            <div class="hud-bottom-left">
+                <span class="hint">WASD to Move | Mouse to Look | E to Inspect</span>
+            </div>
+            <div class="hud-crosshair">+</div>
+        </div>
+
+    </div>
+
+    <!-- Game Entry Point -->
+    <script type="module" src="src/main.js"></script>
+</body>
+</html>
