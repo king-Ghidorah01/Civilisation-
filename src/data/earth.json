@@ -1,0 +1,10 @@
+{
+    "planet": {
+        "name": "Earth",
+        "mass_kg": 5.972e24,
+        "radius_m": 6371000,
+        "gravity_m_s2": 9.80665,
+        "escape_velocity_m_s": 11186,
+        "atmospheric_pressure_sea_level_pa": 101325
+    }
+}

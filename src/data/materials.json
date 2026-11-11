@@ -1,0 +1,10 @@
+{
+    "concrete": {
+        "density_kg_m3": 2400,
+        "embodied_energy_mj_kg": 1.0
+    },
+    "steel": {
+        "density_kg_m3": 7850,
+        "embodied_energy_mj_kg": 20.0
+    }
+}
