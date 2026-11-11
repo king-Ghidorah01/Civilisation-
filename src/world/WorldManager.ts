@@ -13,7 +13,13 @@ export class WorldManager {
         this.currentWorld = new EarthWorld(this.scene);
     }
 
-    public getInteractables(): THREE.Mesh[] {
+    public getInteractables(): THREE.Object3D[] {
         return this.currentWorld ? this.currentWorld.interactableObjects : [];
+    }
+
+    public update(dt: number): void {
+        if (this.currentWorld) {
+            this.currentWorld.update(dt);
+        }
     }
 }

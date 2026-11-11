@@ -52,6 +52,9 @@ class CivilizationApp {
     }
 
     private update(dt: number): void {
+        this.lighting.update(this.game.time.totalTime);
+        this.renderer.updateSkyColor(this.game.time.totalTime);
+        this.worldManager.update(dt);
         this.player.update(dt);
         this.renderer.render();
     }

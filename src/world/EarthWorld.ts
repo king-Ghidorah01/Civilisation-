@@ -1,17 +1,33 @@
 import * as THREE from 'three';
+import { VehicleManager } from './VehicleManager';
+import { NPCManager } from '../npc/NPCManager';
 
 export class EarthWorld {
     public scene: THREE.Scene;
-    public interactableObjects: THREE.Mesh[] = [];
+    public interactableObjects: THREE.Object3D[] = [];
+
+    public vehicleManager: VehicleManager;
+    public npcManager: NPCManager;
 
     constructor(scene: THREE.Scene) {
         this.scene = scene;
+        this.vehicleManager = new VehicleManager(this.scene);
+        this.npcManager = new NPCManager(this.scene);
         this.generateEnvironment();
     }
 
     private generateEnvironment(): void {
         this.createGround();
         this.createCityBlock();
+
+        // Merge interactables
+        this.interactableObjects.push(...this.vehicleManager.getInteractables());
+        this.interactableObjects.push(...this.npcManager.getInteractables());
+    }
+
+    public update(dt: number): void {
+        this.vehicleManager.update(dt);
+        this.npcManager.update(dt);
     }
 
     private createGround(): void {

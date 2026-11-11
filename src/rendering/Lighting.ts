@@ -26,8 +26,28 @@ export class Lighting {
         scene.add(this.directionalLight);
     }
 
-    // Future expansion for Day/Night cycle updating
-    public update(_time: number): void {
-        // e.g. move the sun based on time
+    public update(totalTime: number): void {
+        // Simple day/night cycle. Let's say 1 full day = 60 real seconds.
+        const dayDuration = 60.0;
+        const timeOfDay = (totalTime % dayDuration) / dayDuration; // 0 to 1
+
+        // 0 = noon, 0.25 = dusk, 0.5 = midnight, 0.75 = dawn
+        const angle = timeOfDay * Math.PI * 2;
+
+        const sunDistance = 300;
+        this.directionalLight.position.x = Math.sin(angle) * sunDistance;
+        this.directionalLight.position.y = Math.cos(angle) * sunDistance;
+        this.directionalLight.position.z = 50;
+
+        // Intensity mapping
+        if (this.directionalLight.position.y > 0) {
+            // Daytime
+            this.directionalLight.intensity = Math.max(0, this.directionalLight.position.y / sunDistance) * 2.5;
+            this.ambientLight.intensity = 1.5;
+        } else {
+            // Nighttime
+            this.directionalLight.intensity = 0;
+            this.ambientLight.intensity = 0.2; // very dark
+        }
     }
 }
