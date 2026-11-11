@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { VehicleManager } from './VehicleManager';
 import { NPCManager } from '../npc/NPCManager';
+import { FactoryFacility } from './FactoryFacility';
 
 export class EarthWorld {
     public scene: THREE.Scene;
@@ -8,11 +9,14 @@ export class EarthWorld {
 
     public vehicleManager: VehicleManager;
     public npcManager: NPCManager;
+    public factory: FactoryFacility;
 
     constructor(scene: THREE.Scene) {
         this.scene = scene;
         this.vehicleManager = new VehicleManager(this.scene);
         this.npcManager = new NPCManager(this.scene);
+        // Place factory outside the procedural city
+        this.factory = new FactoryFacility(this.scene, new THREE.Vector3(-150, 0, -150));
         this.generateEnvironment();
     }
 
@@ -23,11 +27,14 @@ export class EarthWorld {
         // Merge interactables
         this.interactableObjects.push(...this.vehicleManager.getInteractables());
         this.interactableObjects.push(...this.npcManager.getInteractables());
+        this.interactableObjects.push(this.factory.mesh);
+        this.interactableObjects.push(...this.factory.mesh.children);
     }
 
-    public update(dt: number): void {
+    public update(dt: number, totalTime: number): void {
         this.vehicleManager.update(dt);
         this.npcManager.update(dt);
+        this.factory.update(dt, totalTime);
     }
 
     private createGround(): void {

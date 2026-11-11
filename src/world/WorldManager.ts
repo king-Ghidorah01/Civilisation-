@@ -17,9 +17,9 @@ export class WorldManager {
         return this.currentWorld ? this.currentWorld.interactableObjects : [];
     }
 
-    public update(dt: number): void {
+    public update(dt: number, totalTime: number): void {
         if (this.currentWorld) {
-            this.currentWorld.update(dt);
+            this.currentWorld.update(dt, totalTime);
         }
     }
 }
