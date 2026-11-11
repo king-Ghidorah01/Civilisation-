@@ -37,6 +37,28 @@ export class Renderer {
         this.renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
+    public updateSkyColor(totalTime: number): void {
+        const dayDuration = 60.0;
+        const timeOfDay = (totalTime % dayDuration) / dayDuration; // 0 to 1
+
+        const angle = timeOfDay * Math.PI * 2;
+        const sunY = Math.cos(angle);
+
+        if (sunY > 0.2) {
+            // Day
+            this.scene.background = new THREE.Color(0x87CEEB); // Sky blue
+        } else if (sunY > 0) {
+            // Sunset / Sunrise transition
+            const t = sunY / 0.2; // 0 to 1
+            const sunsetColor = new THREE.Color(0xff7e00);
+            const dayColor = new THREE.Color(0x87CEEB);
+            this.scene.background = sunsetColor.lerp(dayColor, t);
+        } else {
+            // Night
+            this.scene.background = new THREE.Color(0x050510); // Dark night sky
+        }
+    }
+
     public render(): void {
         this.renderer.render(this.scene, this.camera);
     }
