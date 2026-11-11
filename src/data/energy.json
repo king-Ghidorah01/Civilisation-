@@ -1,0 +1,13 @@
+{
+    "global_metrics": {
+        "current_total_consumption_tw": 18.0,
+        "primary_sources": {
+            "fossil_fuels_percent": 80,
+            "renewables_percent": 15,
+            "nuclear_percent": 5
+        }
+    },
+    "kardashev": {
+        "type_1_target_tw": 174000
+    }
+}
