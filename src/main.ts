@@ -1,7 +1,9 @@
 import { Game } from './core/Game';
 import { Renderer } from './rendering/Renderer';
 import { Lighting } from './rendering/Lighting';
-import { HUD } from './ui/HUD';
+import React from 'react';
+import { createRoot, type Root } from 'react-dom/client';
+import { AppUI } from './ui/AppUI';
 import { PlayerController } from './player/PlayerController';
 import { WorldManager } from './world/WorldManager';
 
@@ -9,7 +11,7 @@ class CivilizationApp {
     private game: Game;
     private renderer: Renderer;
     public lighting: Lighting;
-    public hud: HUD;
+    private root: Root;
     private player: PlayerController;
     private worldManager: WorldManager;
 
@@ -22,8 +24,15 @@ class CivilizationApp {
         this.renderer = new Renderer(canvas);
         this.lighting = new Lighting(this.renderer.scene);
 
-        // Initialize UI
-        this.hud = new HUD(this.game.eventBus, this.game.state);
+        // Initialize React UI
+        const uiContainer = document.getElementById('ui-layer')!;
+        this.root = createRoot(uiContainer);
+        this.root.render(
+            React.createElement(AppUI, {
+                eventBus: this.game.eventBus,
+                gameState: this.game.state
+            })
+        );
 
         // Initialize Player Controller
         this.player = new PlayerController(
@@ -52,9 +61,10 @@ class CivilizationApp {
     }
 
     private update(dt: number): void {
-        this.lighting.update(this.game.time.totalTime);
-        this.renderer.updateSkyColor(this.game.time.totalTime);
-        this.worldManager.update(dt);
+        const totalTime = this.game.time.totalTime;
+        this.lighting.update(totalTime);
+        this.renderer.updateSkyColor(totalTime);
+        this.worldManager.update(dt, totalTime);
         this.player.update(dt);
         this.renderer.render();
     }

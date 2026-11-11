@@ -11,30 +11,8 @@
     <!-- 3D Canvas -->
     <canvas id="game-canvas"></canvas>
 
-    <!-- UI Overlay -->
-    <div id="ui-layer">
-      <!-- Main Menu -->
-      <div id="main-menu" class="panel">
-        <h1>CIVILIZATION</h1>
-        <h2>A Journey Through Physics</h2>
-        <button id="btn-start">BEGIN JOURNEY</button>
-      </div>
-
-      <!-- HUD -->
-      <div id="hud" class="hidden">
-        <div id="crosshair">+</div>
-        <div id="dashboard">
-          <div>CIVILIZATION LEVEL: <span id="civ-level">0.73</span></div>
-          <div>GLOBAL ENERGY: <span id="civ-energy">18.0</span> TW</div>
-        </div>
-
-        <!-- Science Scanner Panel -->
-        <div id="scanner-panel" class="hidden panel">
-          <h3>INSPECTION DATA</h3>
-          <div id="scanner-content"></div>
-        </div>
-      </div>
-    </div>
+    <!-- React Root -->
+    <div id="ui-layer"></div>
 
     <script type="module" src="/src/main.ts"></script>
   </body>

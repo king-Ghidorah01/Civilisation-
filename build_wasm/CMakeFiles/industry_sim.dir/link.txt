@@ -1,0 +1,1 @@
+/app/emsdk/upstream/emscripten/em++  -O3 -lembind -s MODULARIZE=1 -s EXPORT_NAME=IndustrialSimModule CMakeFiles/industry_sim.dir/src/cpp/IndustrialSimulation.cpp.o -o industry_sim.js
